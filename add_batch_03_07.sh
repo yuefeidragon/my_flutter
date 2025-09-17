@@ -219,7 +219,7 @@ cat > docs/05_ci_design.md <<'MD'
 - Pipeline 完整性 4 分；macOS/simulator 细节 3 分；证书/安全运维 3 分
 MD
 
-mkdir -p samples/q05_ci_design/lib test
+mkdir -p samples/q05_ci_design/lib samples/q05_ci_design/test
 cat > samples/q05_ci_design/lib/main.dart <<'DART'
 import 'package:flutter/material.dart';
 void main() => runApp(const MaterialApp(home: Scaffold(body: Center(child: Text('CI Demo')))));
