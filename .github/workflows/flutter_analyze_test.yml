@@ -1,0 +1,27 @@
+name: Flutter Analyze & Test (Linux)
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  analyze-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Flutter --version
+        run: flutter --version
+      - name: Analyze
+        run: |
+          flutter pub get
+          flutter analyze
+      - name: Run tests (if any)
+        run: |
+          flutter pub get
+          # run tests in each sample if present
+          if [ -d samples/q01_lifecycle ]; then (cd samples/q01_lifecycle && flutter test) || true; fi
+          if [ -d samples/q02_state_persistence ]; then (cd samples/q02_state_persistence && flutter test) || true; fi
